@@ -25,13 +25,13 @@ public class MovieController {
 	public MovieRes findMovieByMovieName(@RequestBody MovieReq req) {
 		//判斷查詢內容是否為空
 		if(!StringUtils.hasText(req.getMovieName())) {
-			return new MovieRes(MovieRtnCode.EMPTY.getMessage());
+			return new MovieRes(MovieRtnCode.MOVIE_EMPTY.getMessage());
 		}
 		List<Movie> movieList = movieService.findMovieByMovieName(req.getMovieName());
 		
 		//該電影若不存在，則回傳不存在的訊息
 		if(movieList == null) {
-			return new MovieRes(MovieRtnCode.EXIST.getMessage());
+			return new MovieRes(MovieRtnCode.MOVIE_EXIST.getMessage());
 		}
 		//當查詢成功時顯示該部電影的所有資料
 		MovieRes movieRes = new MovieRes(movieList,MovieRtnCode.SUCCESSFUL.getMessage());
@@ -43,12 +43,12 @@ public class MovieController {
 	public MovieRes findMovieByType(@RequestBody MovieReq req) {
 		//判斷查詢內容是否為空
 		if(!StringUtils.hasText(req.getType())) {
-			return new MovieRes(MovieRtnCode.EMPTY.getMessage());
+			return new MovieRes(MovieRtnCode.TYPE_EMPTY.getMessage());
 		}
 		List<Movie> movie = movieService.findMovieByType(req.getType());
 		//如果電影不存在，則回傳不存在的訊息
 		if(movie == null) {
-			return new MovieRes(MovieRtnCode.EXIST.getMessage());
+			return new MovieRes(MovieRtnCode.TYPE_EXIST.getMessage());
 		}
 		
 		MovieRes movieRes = new MovieRes(movie,MovieRtnCode.SUCCESSFUL.getMessage());

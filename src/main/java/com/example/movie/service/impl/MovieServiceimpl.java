@@ -21,11 +21,12 @@ public class MovieServiceimpl implements MovieService {
 		List<Movie> resList = new ArrayList<>();
 		List<Movie> movieList = movieDao.findMovieByMovieName(movieName);
 
-			//判斷是否為空的
+		//判斷是否為空的
 		if (movieList.isEmpty()) {
 			return null;
 		}
-
+		
+		//列出該電影的所有詳細資料	
 		for (Movie movie : movieList) {
 			resList.add(movie);
 		}
@@ -34,7 +35,11 @@ public class MovieServiceimpl implements MovieService {
 
 	@Override
 	public List<Movie> findMovieByType(String type) {
-		List<Movie> movie = movieDao.findMovieByType(type);
-		return movie;
+		List<Movie> movieList = movieDao.findMovieByType(type);
+		
+		if (movieList.isEmpty()) {
+			return null;
+		}
+		return movieList;
 	}
 }

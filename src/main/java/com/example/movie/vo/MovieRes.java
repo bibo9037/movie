@@ -3,8 +3,9 @@ package com.example.movie.vo;
 import java.util.List;
 
 import com.example.movie.entity.Movie;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-
+@JsonInclude(JsonInclude.Include.NON_EMPTY)	
 public class MovieRes {
 	
 	private Movie movie;
