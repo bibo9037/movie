@@ -2,20 +2,35 @@ package com.example.movie.vo;
 
 import java.util.List;
 
+import com.example.movie.entity.Movie;
+
 
 public class MovieRes {
 	
-	private MovieRes movie;
+	private Movie movie;
 	
 	private String message;
 	
-	private List<MovieRes> movieList;
+	private List<Movie> movieList;
 
 	public MovieRes() {
 	}
 
 	public MovieRes(String message) {
 		this.message = message;
+	}
+	
+	public MovieRes(List<Movie> movieList, String message) {
+		this.movieList = movieList;
+		this.message = message;
+	}
+
+	public Movie getMovie() {
+		return movie;
+	}
+
+	public void setMovie(Movie movie) {
+		this.movie = movie;
 	}
 
 	public String getMessage() {
@@ -26,20 +41,12 @@ public class MovieRes {
 		this.message = message;
 	}
 
-	public List<MovieRes> getMovieList() {
+	public List<Movie> getMovieList() {
 		return movieList;
 	}
 
-	public void setMovieList(List<MovieRes> movieList) {
+	public void setMovieList(List<Movie> movieList) {
 		this.movieList = movieList;
-	}
-
-	public MovieRes getMovie() {
-		return movie;
-	}
-
-	public void setMovie(MovieRes movie) {
-		this.movie = movie;
 	}
 
 }

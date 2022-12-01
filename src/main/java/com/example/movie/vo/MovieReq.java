@@ -110,5 +110,4 @@ public class MovieReq {
 	public void setAmountTicket(int amountTicket) {
 		this.amountTicket = amountTicket;
 	}
-
 }

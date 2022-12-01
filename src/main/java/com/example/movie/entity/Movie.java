@@ -119,5 +119,4 @@ public class Movie {
 	public void setAmountTicket(int amountTicket) {
 		this.amountTicket = amountTicket;
 	}
-
 }

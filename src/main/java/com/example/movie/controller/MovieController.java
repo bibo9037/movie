@@ -22,39 +22,36 @@ public class MovieController {
 	private MovieService movieService;
 	
 	@PostMapping(value = "/api/findMovieByMovieName")
-	public Movie findMovieByMovieName(@RequestBody MovieReq req) {
+	public MovieRes findMovieByMovieName(@RequestBody MovieReq req) {
 		//判斷查詢內容是否為空
 		if(!StringUtils.hasText(req.getMovieName())) {
-			return new Movie(MovieRtnCode.EMPTY.getMessage());
+			return new MovieRes(MovieRtnCode.EMPTY.getMessage());
 		}
-		
-		Movie movieRes = new Movie();
 		List<Movie> movieList = movieService.findMovieByMovieName(req.getMovieName());
+		
 		//該電影若不存在，則回傳不存在的訊息
 		if(movieList == null) {
-			return new Movie(MovieRtnCode.EXIST.getMessage());
+			return new MovieRes(MovieRtnCode.EXIST.getMessage());
 		}
 		//當查詢成功時顯示該部電影的所有資料
-		movieRes.setMovieList(movieList);
-		movieRes.setMessage(MovieRtnCode.SUCCESSFUL.getMessage());
+		MovieRes movieRes = new MovieRes(movieList,MovieRtnCode.SUCCESSFUL.getMessage());
 		return movieRes;
 	}
 
 	
 	@PostMapping(value = "/api/findMovieByType")
-	public Movie findMovieByType(@RequestBody MovieReq req) {
+	public MovieRes findMovieByType(@RequestBody MovieReq req) {
 		//判斷查詢內容是否為空
 		if(!StringUtils.hasText(req.getType())) {
-			return new Movie(MovieRtnCode.EMPTY.getMessage());
+			return new MovieRes(MovieRtnCode.EMPTY.getMessage());
 		}
-		
 		List<Movie> movie = movieService.findMovieByType(req.getType());
 		//如果電影不存在，則回傳不存在的訊息
 		if(movie == null) {
-			return new Movie(MovieRtnCode.EXIST.getMessage());
+			return new MovieRes(MovieRtnCode.EXIST.getMessage());
 		}
 		
-		Movie res = new Movie(MovieRtnCode.SUCCESSFUL.getMessage());
-		return res;
+		MovieRes movieRes = new MovieRes(movie,MovieRtnCode.SUCCESSFUL.getMessage());
+		return movieRes;
 	}
 }
